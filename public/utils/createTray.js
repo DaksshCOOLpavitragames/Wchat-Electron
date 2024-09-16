@@ -9,34 +9,11 @@ exports.createTray = () => {
 	t.setContextMenu(
 		Menu.buildFromTemplate([
 			{
-				label: "Show App",
+				label: "Open",
 				click: () => {
 					if (!config.mainWindow.isVisible())
 						config.mainWindow.show();
 				},
-			},
-			{
-				label: "Creator",
-				submenu: [
-					{
-						label: "GitHub @barisbored",
-						click: () => {
-							shell.openExternal("https://github.com/barisbored");
-						},
-					},
-					{
-						label: "E-Mail hi@338.rocks",
-						click: () => {
-							shell.openExternal("mailto:hi@338.rocks");
-						},
-					},
-					{
-						label: "Website",
-						click: () => {
-							shell.openExternal("https://338.rocks");
-						},
-					},
-				],
 			},
 			{
 				label: "Send Notification",

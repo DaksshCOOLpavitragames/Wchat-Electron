@@ -1,15 +1,6 @@
 {
-	"name": "electron-react-tailwind-template",
-	"author": {
-		"email": "demirci.baris38@gmail.com",
-		"name": "Barış DEMİRCİ",
-		"url": "https://338.rocks"
-	},
-	"description": "Electron app template with React and Tailwind CSS",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/barbarbar338/electron-react-tailwind-template"
-	},
+	"name": "chat-app",
+	"description": "Simple-Chat-App",
 	"license": "GPL-3.0",
 	"version": "1.0.1",
 	"private": true,
@@ -38,6 +29,8 @@
 		"electron-is-dev": "^2.0.0",
 		"electron-reloader": "^1.2.3",
 		"electron-updater": "^5.3.0",
+		"firebase": "^10.13.1",
+		"path-browserify": "^1.0.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-icons": "^4.7.1",

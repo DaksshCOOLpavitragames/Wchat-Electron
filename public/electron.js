@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const { createTray } = require("./utils/createTray");
 const { createMainWindow } = require("./utils/createMainWindow");
@@ -7,6 +7,8 @@ const { showNotification } = require("./utils/showNotification");
 const AutoLaunch = require("auto-launch");
 const remote = require("@electron/remote/main");
 const config = require("./utils/config");
+const path = require('path');
+const { title } = require("process");
 
 if (config.isDev) require("electron-reloader")(module);
 
@@ -15,6 +17,7 @@ remote.initialize();
 if (!config.isDev) {
 	const autoStart = new AutoLaunch({
 		name: config.appName,
+		icon : config.icon,
 	});
 	autoStart.enable();
 }
@@ -22,13 +25,20 @@ if (!config.isDev) {
 app.on("ready", async () => {
 	config.mainWindow = await createMainWindow();
 	config.tray = createTray();
-	config.popupWindow = await createPopupWindow();
-
+	app.setAppUserModelId('Chat App')
 	showNotification(
 		config.appName,
-		"Application running on background! See application tray.",
+		"Chat App is started"
 	);
 });
+
+ipcMain.handle('get-path', (event, ...args) => {
+	return path.join(...args);
+  });
+  
+  ipcMain.handle('open-external', (event, url) => {
+	shell.openExternal(url);
+  });
 
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") app.quit();
